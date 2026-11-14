@@ -2,6 +2,8 @@
 
 **Know where your health is heading—even with no link to Earth.**
 
+Live demo: https://harshavardhanrs20-dot.github.io/astraheart/
+
 AstraHeart is an offline-first, single-page astronaut health-monitoring prototype by team **ASTRAQEL**. It combines check-in signals, personal baselines, spaceflight-hazard context, and illustrative risk estimates.
 
 ## Features
