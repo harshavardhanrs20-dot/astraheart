@@ -31,9 +31,29 @@ footer{border-top:1px solid var(--line);margin-top:23px;padding:15px 2px 0;color
 @media(max-width:660px){.app{padding:12px 12px 20px}header{grid-template-columns:1fr;gap:13px}.mission-meta{justify-content:flex-start}.meta-box{min-width:calc(33.3% - 8px);flex:1}.ground{min-width:100%;max-width:none}.topline{align-items:flex-start;flex-direction:column}.dashboard-grid{grid-template-columns:1fr}.gauge-card{display:flex;align-items:center;gap:12px;text-align:left}.gauge{width:108px;height:108px;margin:0}.gauge-num{font-size:20px}.form-grid,.baseline-grid,.learn-grid,.indicator-grid,.quick-mode .form-grid,.resources-grid{grid-template-columns:1fr}.quick-stats{grid-template-columns:repeat(3,1fr)}.pad{padding:16px}.section-heading{align-items:flex-start;flex-direction:column}.body-card{min-height:435px}.body-svg-wrap{height:330px}.body-label{font-size:9px}.chain{gap:5px}.chain-node{padding:7px}.actions{width:100%}.actions .btn{flex:1}.reminder{align-items:flex-start}.meta-box:nth-child(2){min-width:calc(33.3% - 8px)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+<style>
+body .cosmic-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;isolation:isolate;background:transparent}
+body .app{position:relative;z-index:2}
+body .cosmic-scene::before{content:"";position:absolute;inset:-18%;z-index:0;background:radial-gradient(ellipse at 18% 38%,rgba(39,92,174,.38),transparent 34%),radial-gradient(ellipse at 74% 27%,rgba(102,48,169,.36),transparent 36%),radial-gradient(ellipse at 55% 78%,rgba(8,107,139,.25),transparent 38%);filter:blur(30px);animation:nebulaDrift 68s ease-in-out infinite alternate;will-change:transform}
+body .cosmic-scene::after{content:none}
+body .stars{z-index:1;opacity:.76}
+.gas-giant,.cratered-moon,.blue-planet,.rotating-galaxy{position:absolute;z-index:1;pointer-events:none}
+.gas-giant{top:14vh;right:13vw;width:clamp(72px,9vw,142px);aspect-ratio:1;border-radius:50%;opacity:.42;background:radial-gradient(circle at 30% 27%,#e0c296 0 11%,#a27d67 35%,#4b5078 72%,#151c38);box-shadow:inset -12px -7px 22px rgba(2,7,24,.75),0 0 28px rgba(119,134,208,.16)}
+.gas-giant::before{content:"";position:absolute;inset:31% -28%;border:2px solid rgba(198,180,157,.52);border-left-color:rgba(183,167,169,.2);border-right-color:rgba(183,167,169,.2);border-radius:50%;transform:rotate(-18deg);box-shadow:0 0 8px rgba(191,169,160,.12)}
+.cratered-moon{left:10vw;top:61vh;width:clamp(34px,4.4vw,62px);aspect-ratio:1;border-radius:50%;opacity:.4;background:radial-gradient(circle at 29% 27%,rgba(228,225,222,.85),rgba(133,143,161,.75) 58%,rgba(48,58,81,.9));box-shadow:inset -8px -5px 13px rgba(3,8,24,.8),0 0 16px rgba(181,199,223,.15)}
+.cratered-moon::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 37% 33%,rgba(33,43,65,.4) 0 7%,transparent 8%),radial-gradient(circle at 68% 57%,rgba(33,43,65,.34) 0 11%,transparent 12%),radial-gradient(circle at 28% 72%,rgba(33,43,65,.3) 0 6%,transparent 7%)}
+.blue-planet{right:8vw;bottom:15vh;width:clamp(38px,5vw,74px);aspect-ratio:1;border-radius:50%;opacity:.48;background:radial-gradient(circle at 32% 28%,#9ce7ff,#247dcb 44%,#10194c 78%);box-shadow:inset -10px -8px 18px rgba(4,8,34,.75),0 0 27px rgba(39,154,255,.36)}
+.rotating-galaxy{left:48vw;top:19vh;width:clamp(110px,22vw,280px);height:clamp(55px,11vw,140px);border-radius:50%;opacity:.27;background:radial-gradient(ellipse at center,rgba(226,237,255,.9) 0 2%,rgba(98,145,220,.45) 8%,transparent 20%),conic-gradient(from 20deg,transparent 0 12%,rgba(104,151,226,.45) 18%,transparent 28% 43%,rgba(172,113,219,.33) 52%,transparent 64% 78%,rgba(78,174,217,.3) 86%,transparent 96%);filter:drop-shadow(0 0 14px rgba(92,144,228,.35));animation:galaxyTurn 84s linear infinite}
+@keyframes nebulaDrift{from{transform:translate(-2%,-1%) scale(.98)}to{transform:translate(2%,1%) scale(1.04)}}
+@keyframes galaxyTurn{to{transform:rotate(342deg)}}
+.effects-off .rotating-galaxy{animation-play-state:paused!important}
+@media(max-width:700px){.gas-giant{right:5vw;top:14vh}.cratered-moon{left:5vw;top:66vh}.blue-planet{right:5vw;bottom:10vh}.rotating-galaxy{left:34vw;top:19vh}}
+@media(prefers-reduced-motion:reduce){.rotating-galaxy{animation:none!important}}
+</style>
 </head>
 <body>
 <canvas class="stars" id="starfield" aria-hidden="true"></canvas>
+<div class="cosmic-scene" aria-hidden="true"><span class="gas-giant"></span><span class="cratered-moon"></span><span class="blue-planet"></span><span class="rotating-galaxy"></span></div>
 <div class="boot" id="boot" role="status" aria-live="polite"><div class="boot-box"><div class="boot-logo">ASTRA<span>HEART</span></div><div class="boot-sub">MISSION HEALTH INTELLIGENCE</div><div class="boot-track"><span></span></div><p class="small">Systems initializing · offline mode enabled</p><button class="skip-boot" id="skipBoot">Skip initialization</button></div></div>
 <main class="app">
 <header>
